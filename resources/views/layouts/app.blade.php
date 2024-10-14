@@ -23,7 +23,7 @@
     <div x-cloak class="fixed inset-0 bg-[black]/60 z-50 lg:hidden" :class="{ 'hidden': !$store.app.sidebar }"
         @click="$store.app.toggleSidebar()"></div>
 
-    {{-- <!-- screen loader -->
+    <!-- screen loader -->
     <div class="screen_loader fixed inset-0 bg-[#fafafa] z-[60] grid place-content-center animate__animated">
         <svg width="64" height="64" viewBox="0 0 135 135" xmlns="http://www.w3.org/2000/svg" fill="#73b53c">
             <path
@@ -37,7 +37,7 @@
                     repeatCount="indefinite" />
             </path>
         </svg>
-    </div> --}}
+    </div>
 
     <div class="fixed bottom-6 ltr:right-6 rtl:left-6 z-50" x-data="scrollToTop">
         <template x-if="showTopButton">

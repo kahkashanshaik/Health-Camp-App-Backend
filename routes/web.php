@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     // Masjids
     Route::resource('masjids', 'MasjidController');
     Route::resource('volunteers', 'VolunteerController');
+    Route::resource('campaigns', 'CampaignController');
     Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
     Route::patch('/profile', 'ProfileController@update')->name('profile.update');
     Route::delete('/profile', 'ProfileController@destroy')->name('profile.destroy');

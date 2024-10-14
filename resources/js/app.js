@@ -1,12 +1,14 @@
 import './bootstrap';
+import './choices.js';
 import 'laravel-datatables-vite';
 import PerfectScrollbar from 'perfect-scrollbar';
+import focus from '@alpinejs/focus';
 import collapse from '@alpinejs/collapse';
 import persist from '@alpinejs/persist';
 import UI from '@alpinejs/ui';
-import focus from '@alpinejs/focus';
 import './popper.min.js';
 import Alpine from 'alpinejs';
+
 import { FileUploadWithPreview, Events } from 'file-upload-with-preview';
 
 Alpine.plugin(collapse);
@@ -28,7 +30,6 @@ const initPerfectScrollbar = () => {
         });
     }
 };
-
 initPerfectScrollbar();
 // File Upload With Preview
 window.initializeImagePreviewWidget = function(id, path = null, bgImg) {

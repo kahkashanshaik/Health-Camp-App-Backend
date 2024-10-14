@@ -42,6 +42,26 @@
                     </div>
                 </div>
             </div>
+            <div class="panel grid-cols-1">
+                <div class="flex items-center justify-between dark:text-white-light mb-5">
+                    <h5 class="font-semibold text-lg">Campaigns</h5>
+                    <a href="{{ route('campaigns.index') }}">
+                        {!! loadSvg('round-arrow-right') !!}
+                    </a>
+                </div>
+                <div>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            {!! loadSvg('hand-pills') !!}
+                            <div class="px-3 flex-1">
+                                <div>Total Campaigns</div>
+                            </div>
+                            <span
+                                class="text-primary font-extrabold text-lg px-1 ltr:ml-auto rtl:mr-auto whitespace-pre">{{ $stats['total_volunteers'] }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </x-content-wrapper>

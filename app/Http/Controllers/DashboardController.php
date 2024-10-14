@@ -11,6 +11,7 @@ class DashboardController extends Controller
         $stats = [
             'total_masjids' => Masjid::where('status', 'active')->count(),
             'total_volunteers' => Masjid::where('status', 'active')->count(),
+            'total_campaigns' => Masjid::where('status', 'active')->count(),
         ];
         return view('dashboard', compact('stats'));
     }

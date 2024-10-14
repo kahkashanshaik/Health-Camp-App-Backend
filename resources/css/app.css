@@ -7,6 +7,9 @@
 /* File upload preview  */
 @import 'file-upload-preview.css';
 
+/* Choices */
+@import 'choices.css';
+
 /* @import 'bootstrap/dist/css/bootstrap.min.css'; */
 
 /* DataTables */

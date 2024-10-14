@@ -25,6 +25,7 @@
                 <x-nav-item href="dashboard" :activeCnd="['dashboard']" svg="home" title="Dashboard" />
                 <x-nav-item href="masjids.index" :activeCnd="['masjids.index', 'masjids.create']" svg="garage" title="Masjids" />
                 <x-nav-item href="volunteers.index" :activeCnd="['volunteers.index', 'volunteers.create']" svg="shield-user" title="Volunteers" />
+                <x-nav-item href="campaigns.index" :activeCnd="['campaigns.index', 'campaigns.create']" svg="hand-pills" title="Campaigns" />
             </ul>
         </div>
     </nav>
