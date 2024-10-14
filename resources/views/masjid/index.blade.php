@@ -9,7 +9,7 @@
                 <x-alert-message />
             </div>
             <div class="mb-5 mt-5">
-                <div class="flex items-center gap-5 my-5 w-1/4 ">
+                <div class="flex items-center gap-5 my-5 w-full lg:w-1/4">
                     <select name="status" id="status" class="form-select">
                         <option value="">-- Select Status --</option>
                         <option value="Active">Active</option>

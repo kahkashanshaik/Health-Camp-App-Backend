@@ -1,4 +1,5 @@
-<x-app-layout>
+@extends('layouts.app')
+@section('content')
     <x-content-wrapper>
         <x-card>
             <div class="max-w-xl">
@@ -16,4 +17,4 @@
             </div>
         </x-card> --}}
     </x-content-wrapper>
-</x-app-layout>
+@endsection
