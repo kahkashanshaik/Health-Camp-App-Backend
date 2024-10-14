@@ -29,6 +29,7 @@ class VolunteerRequest extends FormRequest
             'phone_number' => ['required', 'string'],
             'address' => ['required', 'string'],
             'status' => ['required', 'string'],
+            'profile_photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ];
         if($request->isMethod('put')) {
             $validate['password'] = ['nullable', 'string', 'min:8'];

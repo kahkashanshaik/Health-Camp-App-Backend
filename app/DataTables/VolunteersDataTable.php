@@ -26,11 +26,15 @@ class VolunteersDataTable extends DataTable
             ->addColumn('action', function (User $user) {
                 return '<div class="flex flex-wrap gap-2">
                         <a href="' . route("volunteers.edit", $user->id) . '" class="btn btn-primary btn-sm">Edit</a>
-                        <form action="' . route("masjids.destroy", $user->id) . '" method="POST">
+                        <form action="' . route("volunteers.destroy", $user->id) . '" method="POST">
                             ' . @csrf_field() . '
                             ' . @method_field('DELETE') . '
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>';
+            })
+            ->editColumn('profile_photo', function (User $user) {
+                $profile_photo_url = $user->getMedia('profile_photo')->first() ? $user->getMedia('profile_photo')->first()->getUrl() : 'https://ui-avatars.com/api/?name=' . $user->name . '&color=7F9CF5&background=EBF4FF';
+                return '<img src="' . $profile_photo_url . '" class="rounded-full h-10 w-10" alt="' . $user->name . '">';
             })
             ->editColumn('status', function (User $user) {
                 return $user->status == 'Active' ? getBadge('Active', 'primary') : getBadge('InActive', 'danger');
@@ -71,6 +75,7 @@ class VolunteersDataTable extends DataTable
                     //->dom('Bfrtip')
                     ->orderBy(1)
                     ->selectStyleSingle()
+                    ->responsive(true)
                     ->buttons([
                         Button::make('add')->text('Add New Volunteer')->action('function(){
                             window.location = "'.route('volunteers.create').'"
@@ -95,6 +100,7 @@ class VolunteersDataTable extends DataTable
             Column::make('email'),
             Column::make('phone_number'),
             Column::make('address'),
+            Column::make('profile_photo'),
             Column::make('status'),
             Column::make('created_at'),
             Column::make('updated_at'),

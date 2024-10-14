@@ -71,6 +71,7 @@ class MasjidsDataTable extends DataTable
                     //->dom('Bfrtip')
                     ->orderBy(1)
                     ->selectStyleSingle()
+                    ->responsive(true)
                     ->buttons([
                         Button::make('add')->text('Add New Masjid')->action('function(){
                             window.location = "'.route('masjids.create').'"

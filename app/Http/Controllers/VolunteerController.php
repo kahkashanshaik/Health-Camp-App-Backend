@@ -6,6 +6,9 @@ use App\DataTables\VolunteersDataTable;
 use App\Http\Requests\VolunteerRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Plank\Mediable\Facades\MediaUploader;
+use Illuminate\Support\Str;
+
 
 class VolunteerController extends Controller
 {
@@ -34,7 +37,15 @@ class VolunteerController extends Controller
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
         $data['role'] = 'volunteer';
+
         $volunteer = User::create($data);
+        if($request->hasFile('profile_photo') && !empty($request->file('profile_photo'))) {
+            if( $volunteer->media()->first()) {
+                 $volunteer->media()->first()->delete();
+            }
+            $media = MediaUploader::fromSource($request->file('profile_photo'))->toDestination('public', 'images/profiles')->useFilename(Str::uuid())->upload();
+             $volunteer->attachMedia($media, 'profile_photo');
+        }
         return redirect()->route('volunteers.edit', $volunteer->id)->with([
             'status' => "success",
             'color' => "primary",
@@ -73,6 +84,15 @@ class VolunteerController extends Controller
         $volunteer = User::findOrFail($id);
         $data['role'] = 'volunteer';
         $volunteer->update($data);
+
+        if($request->hasFile('profile_photo') && !empty($request->file('profile_photo'))) {
+            if($volunteer->media()->first()) {
+                $volunteer->media()->first()->delete();
+            }
+            $media = MediaUploader::fromSource($request->file('profile_photo'))->toDestination('public', 'images/profiles')->useFilename(Str::uuid())->upload();
+            $volunteer->attachMedia($media, 'profile_photo');
+        }
+
         return redirect()->route('volunteers.edit', $volunteer->id)->with([
             'status' => "success",
             'color' => "primary",
@@ -85,6 +105,15 @@ class VolunteerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if($user->media()->first()) {
+            $user->media()->first()->delete();
+        }
+        $user->delete();
+        return redirect()->route('volunteers.index')->with([
+            'status' => "success",
+            'color' => "primary",
+            'message' => 'Volunteer deleted successfully'
+        ]);
     }
 }

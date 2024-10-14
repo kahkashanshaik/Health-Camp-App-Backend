@@ -10,7 +10,7 @@
             </div>
             <div class="mt-5">
                 <form action="{{ $volunteer->id ? route('volunteers.update', $volunteer->id) : route('volunteers.store') }}"
-                    autocomplete="off" method="POST">
+                    autocomplete="off" method="POST" enctype="multipart/form-data">
                     @csrf
                     {{ $volunteer->id ? method_field('PUT') : '' }}
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -59,6 +59,12 @@
                                 </label>
                             </div>
                             <x-input-error class="mt-2" :messages="$errors->get('status')" />
+                        </div>
+                        <div>
+                            <x-input-label :value="__('Profile Photo')" />
+                            <x-text-input id="profile_photo" name="profile_photo" type="file"
+                                class="mt-1 block w-full" />
+                            <x-input-error class="mt-2" :messages="$errors->get('profile_photo')" />
                         </div>
                     </div>
                     <div class="mt-5 flex justify-end space-x-2">

@@ -16,7 +16,9 @@
                         <option value="InActive">Inactive</option>
                     </select>
                 </div>
-                {{ $dataTable->table() }}
+                <div class="table-responsive">
+                    {{ $dataTable->table() }}
+                </div>
             </div>
         </x-card>
     </x-content-wrapper>

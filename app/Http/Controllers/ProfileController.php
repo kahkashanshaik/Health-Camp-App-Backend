@@ -57,6 +57,9 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        if($user->media()->first()) {
+            $user->media()->first()->delete();
+        }
         Auth::logout();
 
         $user->delete();
