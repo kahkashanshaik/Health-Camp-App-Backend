@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->string('campaign_name');
-            $table->string('campaign_description')->nullable();
+            $table->longText('campaign_description')->nullable();
             $table->foreignId('masjid_id')->constrained('masjids');
             $table->dateTime('start_date');
             $table->dateTime('end_date');

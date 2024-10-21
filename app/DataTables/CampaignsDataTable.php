@@ -47,13 +47,15 @@ class CampaignsDataTable extends DataTable
             ->editColumn('volunteers', function (Campaign $campaign) {
                 if (count($campaign->volunteers)) {
                     $volunteers = '<div class="flex flex-wrap gap-2">';
-                    for($i = 0; $i < count($campaign->volunteers); $i++) {
-                        $volunteers .= '<span class="font-bold">'.User::find($campaign->volunteers[$i])->name.'</span>';
+                    for ($i = 0; $i < count($campaign->volunteers); $i++) {
+                        $volunteers .= '<span class="font-bold">' . User::find($campaign->volunteers[$i])->name . '</span>';
                     }
                     return $volunteers . '</div>';
                 } else {
                     return 'No Volunteers';
                 };
+            })->editColumn('campaign_description', function (Campaign $campaign) {
+                return str_split($campaign->campaign_description, 50)[0].'...';
             })
             ->editColumn('start_date', function (Campaign $campaign) {
                 return Carbon::parse($campaign->start_date)->format('d M Y');
@@ -67,7 +69,7 @@ class CampaignsDataTable extends DataTable
             // ->editColumn('updated_at', function (Campaign $campaign) {
             //     return $campaign->updated_at->diffForHumans();
             // })
-            ->rawColumns(['action', 'campaign_image', 'volunteers', 'status'])
+            ->rawColumns(['action', 'campaign_image','campaign_description', 'volunteers', 'status'])
             ->setRowId('id');
     }
 
