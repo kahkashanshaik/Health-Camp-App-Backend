@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::prefix('v1')->group(function () {
     Route::get('/campaigns', 'CampaignController@list');
+    Route::get('/campaign/{id}', 'CampaignController@get');
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });

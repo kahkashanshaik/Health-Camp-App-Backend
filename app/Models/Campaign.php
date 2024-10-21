@@ -33,12 +33,11 @@ class Campaign extends Model
         return $this->belongsTo(Masjid::class);
     }
     public function scopeStatus($query, $status = null) {
-        if (empty($status))
+        if (empty($status) || $status == 'all')
             return $query;
 
         if ($status == 'latest'){
             $query->whereDate('start_date', '>=', Carbon::now());
-            $query->orderBy('start_date', 'asc');
         }
 
         if ($status == 'upcoming')
