@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::prefix('v1')->group(function () {
+    // Campaigns
     Route::get('/campaigns', 'CampaignController@list');
     Route::get('/campaign/{id}', 'CampaignController@get');
-    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-        return $request->user();
+    // Volunteers login
+    Route::post('/volunteer/login', 'VolunteerAuthController@login');
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        // Volunteers logout
+        Route::post('/volunteer/logout', 'VolunteerAuthController@logout');
     });
 });
